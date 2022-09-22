@@ -13,7 +13,7 @@ import { OptionPlugin } from "@baklavajs/plugin-options-vue";
 import { createSimpleSnappingProvider } from "@baklavajs/plugin-renderer-vue";
 
 import Toolbar from "./components/Toolbar.vue";
-import MathNode from "./components/nodes/MathNode";
+import StoryChoiceNode from "./components/nodes/StoryChoice";
 import EndNode from "./components/nodes/EndNode";
 import MessageNode from "./components/nodes/MessageNode";
 
@@ -36,7 +36,7 @@ export default {
     this.viewPlugin.enableMinimap = true;
     this.viewPlugin.snappingProvider = createSimpleSnappingProvider(30, 30);
 
-    this.editor.registerNodeType("Math", MathNode);
+    this.editor.registerNodeType("StoryChoice", StoryChoiceNode);
     this.editor.registerNodeType("End", EndNode);
     this.editor.registerNodeType("Message", MessageNode);
   },
