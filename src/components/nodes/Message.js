@@ -3,7 +3,7 @@ import { Node } from "@baklavajs/core";
 export default class MessageNode extends Node {
   constructor() {
     super();
-    
+
     this.type = "MessageNode";
     this.name = "Message";
 

@@ -14,8 +14,8 @@ import { createSimpleSnappingProvider } from "@baklavajs/plugin-renderer-vue";
 
 import Toolbar from "./components/Toolbar.vue";
 import StoryChoiceNode from "./components/nodes/StoryChoice";
-import EndNode from "./components/nodes/EndNode";
-import MessageNode from "./components/nodes/MessageNode";
+import EndNode from "./components/nodes/End";
+import MessageNode from "./components/nodes/Message";
 
 export default {
   data() {
@@ -26,7 +26,7 @@ export default {
     };
   },
   components: {
-    Toolbar
+    Toolbar,
   },
   created() {
     this.editor.use(this.viewPlugin);

@@ -5,6 +5,6 @@ export default new NodeBuilder("EndNode")
   .addInputInterface("Source", "decision")
   .addOption("Message", "InputOption")
   .addOption("Type", "SelectOption", "Defeat", undefined, {
-    items: ["Defeat", "Win"]
+    items: ["Defeat", "Win"],
   })
   .build();

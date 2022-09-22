@@ -7,9 +7,7 @@
 <script>
 export default {
   name: "Toolbar",
-  props: [
-    "editor"
-  ],
+  props: ["editor"],
   methods: {
     showExport() {
       alert("Diagram exported do the console");

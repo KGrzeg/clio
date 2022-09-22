@@ -1,18 +1,17 @@
 import { Node } from "@baklavajs/core";
 
 export default class StoryChoiceNode extends Node {
-  lastChoicesCount = 0;
-
   constructor() {
     super();
 
     this.type = "StoryChoiceNode";
     this.name = "StoryChoice";
+    this.lastChoicesCount = 0;
 
     this.addInputInterface("Source", "decision");
     this.addOption("Message", "InputOption", "...");
     this.addOption("Choices count", "SelectOption", "2", undefined, {
-      items: ["2", "3", "4"]
+      items: ["2", "3", "4"],
     });
 
     this.events.update.addListener("choices", this.update.bind(this));
@@ -29,7 +28,7 @@ export default class StoryChoiceNode extends Node {
   changeChoicesCount(count) {
     if (count < this.lastChoicesCount)
       for (let i = this.lastChoicesCount; i > count; --i) {
-        this.removeOption(`Choice ${i}`)
+        this.removeOption(`Choice ${i}`);
         this.removeInterface(`Answer ${i}`);
       }
 
