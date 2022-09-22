@@ -13,6 +13,7 @@ import { createSimpleSnappingProvider } from "@baklavajs/plugin-renderer-vue";
 
 import MathNode from "./components/nodes/MathNode";
 import DisplayNode from "./components/nodes/DisplayNode";
+import MessageNode from "./components/nodes/MessageNode";
 
 export default {
   data() {
@@ -32,6 +33,7 @@ export default {
 
     this.editor.registerNodeType("Math", MathNode);
     this.editor.registerNodeType("Display", DisplayNode);
+    this.editor.registerNodeType("Message", MessageNode);
   },
 };
 </script>
