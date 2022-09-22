@@ -1,6 +1,7 @@
 <template>
   <div class="editor">
     <baklava-editor :plugin="viewPlugin"></baklava-editor>
+    <Toolbar :editor="editor" />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import { ViewPlugin } from "@baklavajs/plugin-renderer-vue";
 import { OptionPlugin } from "@baklavajs/plugin-options-vue";
 import { createSimpleSnappingProvider } from "@baklavajs/plugin-renderer-vue";
 
+import Toolbar from "./components/Toolbar.vue";
 import MathNode from "./components/nodes/MathNode";
 import DisplayNode from "./components/nodes/DisplayNode";
 import MessageNode from "./components/nodes/MessageNode";
@@ -22,6 +24,9 @@ export default {
       engine: new Engine(true),
       viewPlugin: new ViewPlugin(),
     };
+  },
+  components: {
+    Toolbar
   },
   created() {
     this.editor.use(this.viewPlugin);
