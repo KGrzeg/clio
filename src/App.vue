@@ -14,7 +14,7 @@ import { createSimpleSnappingProvider } from "@baklavajs/plugin-renderer-vue";
 
 import Toolbar from "./components/Toolbar.vue";
 import MathNode from "./components/nodes/MathNode";
-import DisplayNode from "./components/nodes/DisplayNode";
+import EndNode from "./components/nodes/EndNode";
 import MessageNode from "./components/nodes/MessageNode";
 
 export default {
@@ -37,7 +37,7 @@ export default {
     this.viewPlugin.snappingProvider = createSimpleSnappingProvider(30, 30);
 
     this.editor.registerNodeType("Math", MathNode);
-    this.editor.registerNodeType("Display", DisplayNode);
+    this.editor.registerNodeType("End", EndNode);
     this.editor.registerNodeType("Message", MessageNode);
   },
 };
