@@ -1,55 +1,44 @@
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
-</script>
-
 <template>
-  <div id="app">
-    <header>
-      <img
-        alt="Vue logo"
-        class="logo"
-        src="./assets/logo.svg"
-        width="125"
-        height="125"
-      />
-
-      <div class="wrapper">
-        <HelloWorld msg="You did it!" />
-      </div>
-    </header>
-
-    <main>
-      <TheWelcome />
-    </main>
+  <div class="editor">
+    <baklava-editor :plugin="viewPlugin"></baklava-editor>
   </div>
 </template>
 
+<script>
+import { Editor } from "@baklavajs/core";
+import { Engine } from "@baklavajs/plugin-engine";
+import { ViewPlugin } from "@baklavajs/plugin-renderer-vue";
+import { OptionPlugin } from "@baklavajs/plugin-options-vue";
+import { createSimpleSnappingProvider } from "@baklavajs/plugin-renderer-vue";
+
+import MathNode from "./components/nodes/MathNode";
+import DisplayNode from "./components/nodes/DisplayNode";
+
+export default {
+  data() {
+    return {
+      editor: new Editor(),
+      engine: new Engine(true),
+      viewPlugin: new ViewPlugin(),
+    };
+  },
+  created() {
+    this.editor.use(this.viewPlugin);
+    this.editor.use(this.engine);
+    this.editor.use(new OptionPlugin());
+
+    this.viewPlugin.enableMinimap = true;
+    this.viewPlugin.snappingProvider = createSimpleSnappingProvider(30, 30);
+
+    this.editor.registerNodeType("Math", MathNode);
+    this.editor.registerNodeType("Display", DisplayNode);
+  },
+};
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.editor {
+  width: 100%;
+  height: 100%;
 }
 </style>
