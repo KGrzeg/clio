@@ -14,6 +14,7 @@ import { createSimpleSnappingProvider } from "@baklavajs/plugin-renderer-vue";
 
 import Toolbar from "./components/Toolbar.vue";
 import StoryChoiceNode from "./components/nodes/StoryChoice";
+import StartNode from "./components/nodes/Start";
 import EndNode from "./components/nodes/End";
 import MessageNode from "./components/nodes/Message";
 
@@ -36,9 +37,10 @@ export default {
     this.viewPlugin.enableMinimap = true;
     this.viewPlugin.snappingProvider = createSimpleSnappingProvider(30, 30);
 
+    this.editor.registerNodeType("Start", StartNode);
     this.editor.registerNodeType("StoryChoice", StoryChoiceNode);
-    this.editor.registerNodeType("End", EndNode);
     this.editor.registerNodeType("Message", MessageNode);
+    this.editor.registerNodeType("End", EndNode);
   },
 };
 </script>
