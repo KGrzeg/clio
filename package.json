@@ -2,24 +2,28 @@
   "name": "clio-editor",
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview --port 4173",
+    "dev": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "baklavajs": "^1.10.1",
+    "core-js": "^3.25.2",
     "vue": "^2.7.7"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.1.0",
-    "@vitejs/plugin-legacy": "^2.0.0",
-    "@vitejs/plugin-vue2": "^1.1.2",
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
     "@vue/eslint-config-prettier": "^7.0.0",
-    "eslint": "^8.5.0",
-    "eslint-plugin-vue": "^9.0.0",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
     "prettier": "^2.5.1",
-    "terser": "^5.14.2",
-    "vite": "^3.0.2"
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "vue-loader": "^15.10.0"
   }
 }
