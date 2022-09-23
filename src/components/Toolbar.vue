@@ -13,9 +13,14 @@ export default {
   props: ["editor"],
   methods: {
     exportScenario() {
-      const export_txt = JSON.stringify(exporter(this.editor));
-      const blob = new Blob([export_txt], {type: "text/plain;charset=utf-8"});
-      saveAs(blob, "scenario.json");
+      try{
+        const export_txt = JSON.stringify(exporter(this.editor));
+        const blob = new Blob([export_txt], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "scenario.json");
+      } catch(err) {
+        alert("Error occurred. Do you have unconnected nodes?")
+        console.error(err);
+      }
     },
   },
 };
