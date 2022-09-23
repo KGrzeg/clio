@@ -8,3 +8,13 @@ export default new NodeBuilder("EndNode")
     items: ["Defeat", "Win"],
   })
   .build();
+
+export function simplify(endNode, resolver) {
+  return {
+    type: "End",
+    id: endNode.id,
+    message: endNode.options[0][1],
+    kind: endNode.options[1][1],
+    previous: resolver(endNode.interfaces[0][1].id)
+  }
+}

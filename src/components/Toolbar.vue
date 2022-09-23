@@ -5,13 +5,16 @@
 </template>
 
 <script>
+import exporter from "../exporter";
+
 export default {
   name: "Toolbar",
   props: ["editor"],
   methods: {
     showExport() {
       alert("Diagram exported do the console");
-      console.log(this.editor.save());
+      console.log(exporter(this.editor));
+      console.log(JSON.stringify(exporter(this.editor)));
     },
   },
 };
@@ -29,5 +32,6 @@ export default {
   margin: 5px;
   background-color: #777;
   border-radius: 5px;
+  cursor: pointer;
 }
 </style>

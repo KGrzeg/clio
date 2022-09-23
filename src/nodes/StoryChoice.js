@@ -41,3 +41,25 @@ export default class StoryChoiceNode extends Node {
     this.lastChoicesCount = count;
   }
 }
+
+export function simplify(storyChoiceNode, resolver) {
+  const previous_id = storyChoiceNode.interfaces[0][1].id;
+  const choicesCount = parseInt(storyChoiceNode.options[1][1]);
+  const choices = [];
+
+  for (let i = 0; i < choicesCount; ++i) {
+    const next_id = storyChoiceNode.interfaces[1 + i][1].id;
+    choices.push({
+      message: storyChoiceNode.options[2 + i][1],
+      next: resolver(next_id)
+    });
+  }
+
+  return {
+    type: "StoryChoice",
+    id: storyChoiceNode.id,
+    message: storyChoiceNode.options[0][1],
+    previous: resolver(previous_id),
+    choices
+  };
+}
