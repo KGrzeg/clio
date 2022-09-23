@@ -13,10 +13,10 @@ import { OptionPlugin } from "@baklavajs/plugin-options-vue";
 import { createSimpleSnappingProvider } from "@baklavajs/plugin-renderer-vue";
 
 import Toolbar from "./components/Toolbar.vue";
-import StoryChoiceNode from "./components/nodes/StoryChoice";
-import StartNode from "./components/nodes/Start";
-import EndNode from "./components/nodes/End";
-import MessageNode from "./components/nodes/Message";
+import StoryChoiceNode from "./nodes/StoryChoice";
+import StartNode from "./nodes/Start";
+import EndNode from "./nodes/End";
+import MessageNode from "./nodes/Message";
 
 export default {
   data() {
