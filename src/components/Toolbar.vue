@@ -1,20 +1,21 @@
 <template>
   <div class="toolbar">
-    <button @click="showExport">export</button>
+    <button @click="exportScenario">export</button>
   </div>
 </template>
 
 <script>
+import { saveAs } from 'file-saver';
 import exporter from "../exporter";
 
 export default {
   name: "Toolbar",
   props: ["editor"],
   methods: {
-    showExport() {
-      alert("Diagram exported do the console");
-      console.log(exporter(this.editor));
-      console.log(JSON.stringify(exporter(this.editor)));
+    exportScenario() {
+      const export_txt = JSON.stringify(exporter(this.editor));
+      const blob = new Blob([export_txt], {type: "text/plain;charset=utf-8"});
+      saveAs(blob, "scenario.json");
     },
   },
 };
