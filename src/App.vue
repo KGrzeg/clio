@@ -37,10 +37,10 @@ export default {
     this.viewPlugin.enableMinimap = true;
     this.viewPlugin.snappingProvider = createSimpleSnappingProvider(30, 30);
 
-    this.editor.registerNodeType("Start", StartNode);
-    this.editor.registerNodeType("StoryChoice", StoryChoiceNode);
-    this.editor.registerNodeType("Message", MessageNode);
-    this.editor.registerNodeType("End", EndNode);
+    this.editor.registerNodeType("StartNode", StartNode);
+    this.editor.registerNodeType("StoryChoiceNode", StoryChoiceNode);
+    this.editor.registerNodeType("MessageNode", MessageNode);
+    this.editor.registerNodeType("EndNode", EndNode);
   },
 };
 </script>

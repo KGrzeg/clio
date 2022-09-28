@@ -1,24 +1,54 @@
 <template>
   <div class="toolbar">
-    <button @click="exportScenario">export</button>
+    <button @click="exportCLIO">export CLIO</button>
+    <button @click="$refs.import.trigger()">import CLIO</button>
+    <button @click="exportJSON">export JSON</button>
+    <HiddenFileInput name="importClio" @change="importCLIO" ref="import" />
   </div>
 </template>
 
 <script>
-import { saveAs } from 'file-saver';
+import { saveAs } from "file-saver";
 import exporter from "../exporter";
+import HiddenFileInput from "./HiddenFileInput.vue";
+
+function exportAsFile(data, name) {
+  const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+  saveAs(blob, name);
+}
 
 export default {
   name: "Toolbar",
   props: ["editor"],
+  components: {
+    HiddenFileInput,
+  },
   methods: {
-    exportScenario() {
-      try{
+    exportCLIO() {
+      const diagram = this.editor.save();
+      const data = JSON.stringify(diagram);
+      exportAsFile(data, "scenario.clio");
+    },
+    importCLIO(file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const scenarioDataRaw = event.target.result;
+          const scenarioData = JSON.parse(scenarioDataRaw);
+          this.editor.load(scenarioData);
+        } catch (err) {
+          alert("Error occurred. Did you select a correct CLIO file?");
+          console.error(err);
+        }
+      };
+      reader.readAsText(file);
+    },
+    exportJSON() {
+      try {
         const export_txt = JSON.stringify(exporter(this.editor));
-        const blob = new Blob([export_txt], {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "scenario.json");
-      } catch(err) {
-        alert("Error occurred. Do you have unconnected nodes?")
+        exportAsFile(export_txt, "scenario.json");
+      } catch (err) {
+        alert("Error occurred. Do you have unconnected nodes?");
         console.error(err);
       }
     },
